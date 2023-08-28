@@ -1,13 +1,32 @@
 import React from "react"
 
-function NewStoreForm() {
+function NewStoreForm({ addNewStore }) {
 
-    return(
+    function handleSubmit(e) {
+        e.preventDefault()
+
+        const formElement = e.target
+
+        const storeData = {
+            "name": formElement["name"].value,
+            "image": formElement["image"].value,
+            "season": formElement["season"].value,
+            "episode": formElement["episode"].value,
+
+        }
+        addNewStore(storeData)
+
+        formElement.reset()
+
+
+    }
+
+    return (
         <form>
-            <input type="text" id="name" placeholder="Store Name"/>
+            <input type="text" id="name" placeholder="Store Name" />
             <input type="text" id="image" placeholder="Image URL" />
-            <input type="number" id="season" placeholder="Season" step="1"/>
-            <input type="number" id="episode" placeholder="Episode" step="1"/>
+            <input type="number" id="season" placeholder="Season" step="1" />
+            <input type="number" id="episode" placeholder="Episode" step="1" />
             <button type="submit">Add Store</button>
         </form>
     )
